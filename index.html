@@ -12,6 +12,8 @@
 <meta property="og:title" content="세연회계법인 | 공인회계사 이규범">
 <meta property="og:description" content="놓치고 있는 세금, 1분이면 확인합니다. 소상공인·기업 감사·사회복지법인 전문.">
 <meta property="og:image" content="https://seyeon-tax.com/img/profile.jpg">
+<link rel="canonical" href="https://seyeon-tax.com/">
+<link rel="alternate" hreflang="ko" href="https://seyeon-tax.com/">
 <link rel="alternate" hreflang="ja" href="https://jp.seyeon-tax.com/">
 <link rel="alternate" hreflang="en" href="https://en.seyeon-tax.com/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -40,6 +42,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);border-
 .right{display:flex;align-items:center;gap:10px}
 .lang{display:flex;gap:4px;font-size:12.5px}
 .lang a{padding:4px 8px;border:1px solid var(--line);border-radius:4px;color:var(--sub)}
+.lang .ls{display:none}
+@media(max-width:560px){.lang .ll{display:none}.lang .ls{display:inline}.nav{gap:8px}.logo{font-size:20px;gap:8px}.logo img{width:36px;height:36px}}
 .lang a.on{background:var(--dark);color:#fff;border-color:var(--dark)}
 .burger{display:none;background:none;border:1px solid var(--line);border-radius:6px;font-size:18px;padding:3px 11px;color:var(--ink)}
 @media(max-width:980px){.menu{display:none}.burger{display:block}
@@ -274,6 +278,19 @@ p.lead{color:var(--sub);font-size:17px;max-width:720px}
 .maps a{border:1px solid #cfd4db;border-radius:6px;padding:8px 14px;font-size:14px;font-weight:600}
 @media(max-width:760px){.ct{grid-template-columns:1fr}}
 
+/* global sites */
+.gs{background:var(--soft);border-top:1px solid var(--line);padding:46px 0}
+.gs h2{font-size:22px;letter-spacing:-.4px}
+.gs .gs-sub{color:var(--sub);margin:6px 0 20px;font-size:15px}
+.gs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gs-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:6px}
+.gs-card .tg{font-size:12.5px;font-weight:700;color:var(--orange2)}
+.gs-card h3{font-size:19px}
+.gs-card p{color:var(--sub);font-size:14.5px}
+.gs-act{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.gs-act a,.gs-act button{font-size:14px;font-weight:700;padding:9px 14px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.gs-act a.go{background:var(--dark);color:#fff;border-color:var(--dark)}
+@media(max-width:760px){.gs-grid{grid-template-columns:1fr}}
 footer{background:#111317;color:#9097a2;font-size:13.5px;padding:34px 0 96px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 footer b{color:#fff}
@@ -284,6 +301,9 @@ footer b{color:#fff}
 .fab .k{background:#fee500;color:#191919}
 .fab .o{background:var(--orange);color:#fff}
 
+document.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var u=b.getAttribute('data-copy'),t=b.textContent;
+ function ok(){b.textContent='복사됨 ✓';setTimeout(function(){b.textContent=t;},1500);}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){prompt('링크를 복사하세요',u);});}else{prompt('링크를 복사하세요',u);}});
 /* reveal */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
 .rv.show{opacity:1;transform:none}
@@ -303,7 +323,7 @@ footer b{color:#fff}
       <a href="#contact">오시는 길</a>
     </nav>
     <div class="right">
-      <div class="lang"><a href="#home" class="on">KR</a><a href="https://jp.seyeon-tax.com">JP</a><a href="https://en.seyeon-tax.com">EN</a></div>
+      <div class="lang"><a href="#home" class="on">KR</a><a href="https://jp.seyeon-tax.com" lang="ja" hreflang="ja" title="일본계 기업용 일본어 사이트"><span class="ll">日本語</span><span class="ls">JP</span></a><a href="https://en.seyeon-tax.com" lang="en" hreflang="en" title="영어권·외국계 기업용 영어 사이트"><span class="ll">English</span><span class="ls">EN</span></a></div>
       <button class="burger" id="burger" aria-label="메뉴">☰</button>
     </div>
   </div>
@@ -650,6 +670,28 @@ footer b{color:#fff}
   </div>
 </section>
 </div>
+
+<!-- ============ GLOBAL SITES ============ -->
+<section class="gs" id="global">
+  <div class="wrap">
+    <h2>외국계 기업 전용 사이트<span class="dot">.</span></h2>
+    <p class="gs-sub">본사·해외 관계자에게는 아래 사이트를 안내해 주세요. 같은 회계사가 직접 응대합니다.</p>
+    <div class="gs-grid">
+      <div class="gs-card">
+        <span class="tg">일본계 기업 · 일본 본사 담당자용</span>
+        <h3 lang="ja">日本語サイト</h3>
+        <p>일본어로 상담부터 보고까지 진행합니다. 한국 진출과 진출 후 운영 가이드를 담았습니다.</p>
+        <div class="gs-act"><a class="go" href="https://jp.seyeon-tax.com" hreflang="ja">jp.seyeon-tax.com →</a><button type="button" data-copy="https://jp.seyeon-tax.com">링크 복사</button></div>
+      </div>
+      <div class="gs-card">
+        <span class="tg">영어권 본사 · 외국계 기업용</span>
+        <h3 lang="en">English site</h3>
+        <p>영어로 본사 보고와 소통을 지원합니다. 한국 직원(담당자) 문의 창구도 함께 있습니다.</p>
+        <div class="gs-act"><a class="go" href="https://en.seyeon-tax.com" hreflang="en">en.seyeon-tax.com →</a><button type="button" data-copy="https://en.seyeon-tax.com">링크 복사</button></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
