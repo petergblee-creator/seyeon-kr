@@ -24,6 +24,11 @@
 .home-main>section{max-width:none!important}
 @media(min-width:861px){.home-main div[style*="minmax(160px"]{grid-template-columns:repeat(6,1fr)!important}}
 @media(max-width:860px){.home-wrap{flex-direction:column-reverse;padding:0;align-items:stretch}.home-side{position:static;width:auto;align-self:stretch;margin:16px}}
+@media(max-width:860px){.sy-bar>div{padding:4px 12px!important;gap:10px!important;font-size:12px!important}.sy-bar span{display:none}.sy-bar b{display:none}.sy-bar button{margin-left:auto}.sy-bar button{padding:3px 10px!important;font-size:12px!important}.sy-barsp{height:30px!important}.sy-subside{display:none}}
+.sy-hdqr{display:flex;gap:10px;align-items:flex-start}
+.sy-hdqr a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;font-weight:700;text-decoration:none;line-height:1.2}
+.sy-hdqr img{width:64px;height:64px}
+@media(max-width:860px){.sy-hdqr img{display:none}.sy-hdqr a{flex-direction:row;padding:7px 12px;border-radius:18px;color:#3C1E1E!important;background:#FEE500;font-size:13px}.sy-contact{display:none!important}.home-side{display:none}}
 </style>
 </head>
 <body>
@@ -70,6 +75,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <a href="tel:+821039456101" style="font-size: 19px; font-weight: 700; color: #222222; text-decoration: none">+82-10-3945-6101</a>
 <span style="font-size: 12px; color: #555555">대표 02-6356-1105｜<b style="color: #D32F2F">주말·퇴근 후 상담 OK</b></span>
 </div>
+<div class="sy-hdqr"><a href="https://open.kakao.com/o/sF4UcUPi" target="_blank" rel="noopener" style="color: #3E6DB0"><img src="img/kakao-qr.png" alt="카카오톡 QR코드">카카오톡 상담</a></div>
 <button type="button" onClick="{{go.test}}" style="min-height: 48px; padding: 0 18px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 3px; font: inherit; font-weight: 700; cursor: pointer; line-height: 1.3">공제·지원금 1분 테스트<br><span style="font-size: 11px; font-weight: 400">놓친 돈이 있는지 바로 확인</span></button>
 </div>
 </div>
@@ -122,16 +128,14 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 
 <div class="home-wrap">
 <aside class="home-side">
-<div style="padding: 14px; background: #F6F8FB; font-size: 13px; display: flex; flex-direction: column; gap: 4px">
+<div class="sy-contact" style="padding: 14px; background: #F6F8FB; font-size: 13px; display: flex; flex-direction: column; gap: 4px">
 <b>상담 창구</b>
 <span>휴대폰 010-3945-6101(직통)</span>
 <span>대표 02-6356-1105</span>
 <span>gblee@seyeon-tax.com</span>
-<img src="img/kakao-qr.png" alt="카카오톡 QR코드" style="width: 110px; height: 110px; margin-top: 6px; align-self: center">
-<a href="https://open.kakao.com/o/sF4UcUPi" style="text-align: center; font-weight: 700; color: #3E6DB0">카카오톡 상담</a>
 <span style="text-align: center; font-size: 12px; color: #555555">카카오톡 ID darou98</span>
 <span style="font-size: 12px; color: #555555; text-align: center">가벼운 질문도 편하게. <b style="color: #D32F2F">주말·퇴근 후 OK</b></span>
-<button type="button" onClick="{{openForm}}" style="margin-top: 10px; width: 100%; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 12px 8px; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1.35"><b style="font-size: 14px; white-space: nowrap">✎ 문의하기 양식</b><span style="font-size: 11px; opacity: 0.9; white-space: nowrap">연락 희망 시간도 OK·하루 안에 회신</span></button>
+<button type="button" onClick="{{openForm}}" style="margin-top: 10px; width: 100%; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 12px 8px; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1.35"><span style="display: flex; align-items: center; gap: 6px"><span style="display: inline-flex; background: #FFFFFF; border-radius: 50%; padding: 3px"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span><b style="font-size: 14px; white-space: nowrap">Google 양식으로 문의</b></span></button>
 </div>
 </aside>
 <div class="home-main">
@@ -260,26 +264,24 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 
 <div style="max-width: 1200px; margin: 0 auto; padding: 28px 16px 48px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
 
-<aside style="flex: 0 1 220px; min-width: 200px; border: 1px solid #D8E2EE">
+<aside class="sy-subside" style="flex: 0 1 220px; min-width: 200px; border: 1px solid #D8E2EE">
 <div style="background: #D6E4F5; color: #1F3F6E; padding: 16px; font-size: 17px; font-weight: 700">{{catTitle}}</div>
 <sc-for list="{{side}}" as="it" hint-placeholder-count="4">
 <button type="button" onClick="{{it.go}}" style="{{it.style}}">{{it.t}}<span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8">{{it.t2}}</span></button>
 </sc-for>
-<div style="padding: 14px; background: #F6F8FB; font-size: 13px; display: flex; flex-direction: column; gap: 4px">
+<div class="sy-contact" style="padding: 14px; background: #F6F8FB; font-size: 13px; display: flex; flex-direction: column; gap: 4px">
 <b>상담 창구</b>
 <span>휴대폰 010-3945-6101(직통)</span>
 <span>대표 02-6356-1105</span>
 <span>gblee@seyeon-tax.com</span>
-<img src="img/kakao-qr.png" alt="카카오톡 QR코드" style="width: 110px; height: 110px; margin-top: 6px; align-self: center">
-<a href="https://open.kakao.com/o/sF4UcUPi" style="text-align: center; font-weight: 700; color: #3E6DB0">카카오톡 상담</a>
 <span style="text-align: center; font-size: 12px; color: #555555">카카오톡 ID darou98</span>
 <span style="font-size: 12px; color: #555555; text-align: center">가벼운 질문도 편하게. <b style="color: #D32F2F">주말·퇴근 후 OK</b></span>
-<button type="button" onClick="{{openForm}}" style="margin-top: 10px; width: 100%; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 12px 8px; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1.35"><b style="font-size: 14px; white-space: nowrap">✎ 문의하기 양식</b><span style="font-size: 11px; opacity: 0.9; white-space: nowrap">연락 희망 시간도 OK·하루 안에 회신</span></button>
+<button type="button" onClick="{{openForm}}" style="margin-top: 10px; width: 100%; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 6px; padding: 12px 8px; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1.35"><span style="display: flex; align-items: center; gap: 6px"><span style="display: inline-flex; background: #FFFFFF; border-radius: 50%; padding: 3px"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span><b style="font-size: 14px; white-space: nowrap">Google 양식으로 문의</b></span></button>
 </div>
 </aside>
 
 <main style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid #222222"><h2 style="margin: 0; font-size: 24px">{{pageTitle}}</h2><sc-if value="{{on.service}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><b style="color: #D32F2F; font-size: 13px">연락을 받으시려면!</b><button type="button" onClick="{{openForm}}" style="min-height: 44px; padding: 0 18px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer; white-space: nowrap">✎ 양식으로 신청하기</button></div></sc-if></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid #222222"><h2 style="margin: 0; font-size: 24px">{{pageTitle}}</h2><sc-if value="{{on.service}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><b style="color: #D32F2F; font-size: 13px">연락을 받으시려면!</b><button type="button" onClick="{{openForm}}" style="min-height: 44px; padding: 0 18px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer; white-space: nowrap">Google 양식으로 신청하기</button></div></sc-if></div>
 
 <sc-if value="{{on.svc}}" hint-placeholder-val="{{false}}">
 <p style="margin: 0; font-size: 16px; line-height: 1.8">분야별로 <b>상담이 필요한 상황, 상담 범위, 미리 준비할 자료</b>를 정리했습니다. 이 페이지 하나로 전체를 보실 수 있습니다. 모든 분야를 담당 회계사가 직접 맡습니다.</p>
@@ -600,7 +602,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <div style="padding: 12px 16px; border-bottom: 1px solid #D8E2EE;"><b>▶ 이후</b>→ 필요한 부분만 맡기셔도 됩니다. 지금 사무소와 병행도 가능합니다</div>
 <div style="padding: 12px 16px;"><b>▶ 「지금 그대로 충분」</b>→ 그것도 하나의 결과입니다. 무리한 제안은 하지 않습니다</div>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><button type="button" onClick="{{openForm}}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer">✎ 양식으로 신청하기</button><a href="https://open.kakao.com/o/sF4UcUPi" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">카카오톡으로 신청 ↗</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><button type="button" onClick="{{openForm}}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer">Google 양식으로 신청하기</button><a href="https://open.kakao.com/o/sF4UcUPi" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">카카오톡으로 신청 ↗</a></div>
 </sc-if>
 
 <sc-if value="{{on.switch}}" hint-placeholder-val="{{false}}">
@@ -856,8 +858,8 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <div style="display: flex; flex-direction: column; gap: 3px"><b style="color: #0B2A6B; font-size: 15px">다른 언어 사이트</b><a href="https://jp.seyeon-tax.com/">日本語（일본계 법인）</a><a href="https://en.seyeon-tax.com/">English（외국계 법인）</a><span style="font-size: 12px; color: #6B7684">카카오톡 ID darou98</span></div>
 </div>
 </footer>
-<div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #0B2A6B; color: #FFFFFF; font-size: 13px; box-shadow: 0 -2px 10px rgba(0,0,0,0.15)"><div style="max-width: 1200px; margin: 0 auto; padding: 9px 16px; display: flex; gap: 18px; align-items: center; white-space: nowrap; overflow-x: auto"><b style="font-size: 14px">세연회계법인</b><span style="color: #C9D8F2">서울 사무소</span><a href="tel:01039456101" style="color: #FFFFFF; font-weight: 700; text-decoration: none">휴대폰 010-3945-6101</a><span>gblee@seyeon-tax.com</span><a href="https://open.kakao.com/o/sF4UcUPi" style="color: #FFE16B; font-weight: 700; text-decoration: none">카카오톡 상담</a><button type="button" onClick="{{openForm}}" style="margin-left: auto; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; padding: 5px 14px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">✎ 문의하기</button></div></div>
-<div style="height: 44px"></div>
+<div class="sy-bar" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #0B2A6B; color: #FFFFFF; font-size: 13px; box-shadow: 0 -2px 10px rgba(0,0,0,0.15)"><div style="max-width: 1200px; margin: 0 auto; padding: 9px 16px; display: flex; gap: 18px; align-items: center; white-space: nowrap; overflow-x: auto"><b style="font-size: 14px">세연회계법인</b><span style="color: #C9D8F2">서울 사무소</span><a href="tel:01039456101" style="color: #FFFFFF; font-weight: 700; text-decoration: none">휴대폰 010-3945-6101</a><span>gblee@seyeon-tax.com</span><a href="https://open.kakao.com/o/sF4UcUPi" style="color: #FFE16B; font-weight: 700; text-decoration: none">카카오톡 상담</a><button type="button" onClick="{{openForm}}" style="margin-left: auto; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; padding: 5px 14px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">✎ 문의하기</button></div></div>
+<div class="sy-barsp" style="height: 44px"></div>
 
 
 </div>
