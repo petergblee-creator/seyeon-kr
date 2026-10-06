@@ -9,7 +9,8 @@
 <link rel="alternate" hreflang="ko" href="https://seyeon-tax.com/">
 <link rel="alternate" hreflang="ja" href="https://jp.seyeon-tax.com/">
 <link rel="alternate" hreflang="en" href="https://en.seyeon-tax.com/">
-<script>(function(){var h=location.hash;if(h==='#check'||h==='#rnd'){location.replace('/classic/'+h);}})();</script>
+<script>(function(){var h=location.hash;if(h==='#check'){location.replace('/tools/money.html');}else if(h==='#rnd'){location.replace('/tools/rnd.html');}})();</script>
+<script>var GA_ID='';if(GA_ID){var g=document.createElement('script');g.async=1;g.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(g);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',GA_ID,{send_page_view:false,site_version:'new'});}</script>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
@@ -487,7 +488,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center"><button type="button" onClick="{{openForm}}" style="min-height: 44px; padding: 0 18px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer">이 분야 상담하기 →</button></div>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><button type="button" onClick="{{go.test}}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer">공제·지원금 1분 테스트 ▶</button><a href="/classic/#check" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">5년 돈 찾기 계산기 ↗</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><button type="button" onClick="{{go.test}}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font: inherit; font-weight: 700; cursor: pointer">공제·지원금 1분 테스트 ▶</button><a href="/tools/money.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">5년 돈 찾기 계산기 ↗</a></div>
 </sc-if>
 
 <sc-if value="{{on.audit}}" hint-placeholder-val="{{false}}">
@@ -554,7 +555,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <span style="font-size: 14px; color: #555555">응답 {{answered}}／10　・　「아니오」 {{noCount}}건</span>
 <b style="font-size: 18px">{{chkTitle}}</b>
 <span style="color: #333333">{{chkBody}}</span>
-<div style="margin-top: 6px"><button type="button" onClick="{{go.service}}" style="min-height: 46px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 3px; font: inherit; font-weight: 700; cursor: pointer">이 결과로 무료 점검 받기</button><a href="/classic/#check" style="margin-left: 10px; font-weight: 700">금액까지 계산해 보기 ↗</a></div>
+<div style="margin-top: 6px"><button type="button" onClick="{{go.service}}" style="min-height: 46px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 3px; font: inherit; font-weight: 700; cursor: pointer">이 결과로 무료 점검 받기</button><a href="/tools/money.html" style="margin-left: 10px; font-weight: 700">금액까지 계산해 보기 ↗</a></div>
 </div>
 </sc-if>
 
@@ -565,8 +566,8 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <div style="padding: 12px 16px; border-bottom: 1px solid #D8E2EE;"><b>▶ R&amp;D·투자세액공제 진단</b>→ 연구·인력개발비(조특§10)와 통합투자세액공제(조특§24)를 1분 만에 추정</div>
 <div style="padding: 12px 16px;"><b>▶ 입력 내용</b>→ 저장되지 않습니다. 결과 화면을 캡처해 카톡으로 보내 주시면 바로 봐 드립니다</div>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="/classic/#check" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font-weight: 700; text-decoration: none">5년 돈 찾기 계산기 ↗</a><a href="/classic/#rnd" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">R&amp;D·투자세액공제 진단 ↗</a></div>
-<span style="font-size: 13px; color: #555555">※ 계산기는 이전 디자인 화면에서 열립니다.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="/tools/money.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #B5532A; color: #FFFFFF; border: 0; border-radius: 4px; font-weight: 700; text-decoration: none">5년 돈 찾기 계산기 ↗</a><a href="/tools/rnd.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; background: #FFFFFF; color: #3E6DB0; border: 1px solid #3E6DB0; border-radius: 4px; font-weight: 700; text-decoration: none">R&amp;D·투자세액공제 진단 ↗</a></div>
+<span style="font-size: 13px; color: #555555">※ 계산기는 별도 화면에서 열립니다. 입력 내용은 저장되지 않습니다.</span>
 </sc-if>
 
 <sc-if value="{{on.support}}" hint-placeholder-val="{{false}}">
@@ -1101,9 +1102,13 @@ var HUB_SUB = '모든 서비스를 한 페이지에';
 var SM_BASE = 'background: none; border: 0; padding: 0 0 0 calc(4px + 1em); text-indent: -1em; text-align: left; color: #C9D8F2; font: inherit; font-size: 13px; line-height: 1.45; cursor: pointer';
 var SM_HUB = 'background: rgba(255,210,122,0.14); border: 1px solid rgba(255,210,122,0.6); border-radius: 4px; padding: 6px 8px 6px calc(8px + 1.1em); text-indent: -1.1em; text-align: left; color: #FFD27A; font: inherit; font-size: 14.5px; font-weight: 700; line-height: 1.4; cursor: pointer; margin: 2px 0 6px';
 var SIDE = 'display: block; width: 100%; min-height: 46px; padding: 0 16px; text-align: left; border: 0; border-bottom: 1px solid #D8E2EE; font: inherit; font-size: 14px; cursor: pointer; ';
+function pv(k) { try { if (window.gtag) gtag('event', 'page_view', { page_title: k, page_location: location.origin + '/' + (k === 'home' ? '' : k), site_version: 'new' }); } catch (e) {} }
+function hashPage() { var h = (location.hash || '').slice(1); var ok = false; MENU.forEach(function (m) { m.subs.forEach(function (sb) { if (sb[0] === h) ok = true; }); }); return ok ? h : 'home'; }
 class Component extends DCLogic {
   componentDidMount() {
     var self = this;
+    var hp = hashPage(); if (hp !== 'home') self.setState({ page: hp }); pv(hp);
+    try { window.addEventListener('hashchange', function () { var k = hashPage(); if (k !== ((self.state || {}).page || 'home')) { self.setState({ page: k }); pv(k); try { window.scrollTo(0, 0); } catch (e) {} } }); } catch (e) {}
     try { setInterval(function () { self.setState({ tick: Date.now() }); }, 30000); } catch (e) {}
     try { fetch('notices.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) { var x = d && d['ko']; if (x && x.length) self.setState({ newsData: x }); }).catch(function () {}); } catch (e) {}
   }
@@ -1113,7 +1118,7 @@ class Component extends DCLogic {
     var page = s.page || 'home';
     var go = {}, on = {}, titles = {};
     var cat = null;
-    var nav = function (k) { return function () { self.setState({ page: k, hover: null }); try { window.scrollTo(0, 0); } catch (e) {} }; };
+    var nav = function (k) { return function () { self.setState({ page: k, hover: null }); try { history.replaceState(null, '', k === 'home' ? location.pathname : '#' + k); } catch (e) {} pv(k); try { window.scrollTo(0, 0); } catch (e) {} }; };
     go.home = nav('home');
     on.home = page === 'home';
     MENU.forEach(function (m) {
@@ -1209,7 +1214,7 @@ class Component extends DCLogic {
       showPopup: false,
       popToday: function () { popHide(1); self.setState({ popup: false }); },
       pop14: function () { popHide(14); self.setState({ popup: false }); },
-      openForm: function () { try { window.open(FORM_URL, '_blank'); } catch (e) {} },
+      openForm: function () { try { if (window.gtag) gtag('event', 'form_open', { from: (self.state || {}).page || 'home' }); window.open(FORM_URL, '_blank'); } catch (e) {} },
       popClose: function () { self.setState({ popup: false }); },
       popToCheck: function () { self.setState({ popup: false, page: 'test' }); try { window.scrollTo(0, 0); } catch (e) {} },
       jpPrev: function () { self.setState({ jpOff: ((self.state || {}).jpOff || 0) - 1 }); },

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>5년 돈 찾기 계산기｜세연회계법인</title>
+<script>var GA_ID='';if(GA_ID){var g=document.createElement('script');g.async=1;g.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(g);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',GA_ID,{site_version:'new'});}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16191f;--sub:#5d6573;--line:#e3e6eb;--soft:#F1F6FD;--navy:#1F3F6E}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR','Malgun Gothic',sans-serif;color:#222;background:#fff;font-size:15px;line-height:1.7}
+a{color:#3E6DB0;text-decoration:none}button{font:inherit;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.lang{background:#F6F8FB;border-bottom:1px solid #DDE3EA;font-size:13px}.lang .wrap{display:flex;justify-content:flex-end;gap:14px;padding:6px 16px;color:#555}
+.hd .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:16px}
+.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:700;color:#3E6DB0}
+.tel{display:flex;flex-direction:column;line-height:1.35}.tel small{font-size:12px;color:#D32F2F;font-weight:700}.tel a{font-size:19px;font-weight:700;color:#222}
+.nav{background:#D6E4F5;border-top:1px solid #C3D6EE;border-bottom:1px solid #C3D6EE}.nav .wrap{display:flex;flex-wrap:wrap}
+.nav a{min-height:46px;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:14px;color:#1F3F6E}.nav a.on{background:#fff;color:#2F5590}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:6px;font-weight:700;font-size:15.5px;border:0}
+.btn.or{background:#B5532A;color:#fff}.btn.ln{background:#fff;color:#222;border:1px solid #cfd4db}
+.ck{background:var(--soft);color:var(--ink);padding:40px 0 70px}
+.ck-hero{background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px 34px 30px}
+.ck-badge{display:inline-block;background:#FFF4EC;color:#9A3412;font-weight:800;font-size:14px;padding:6px 12px;border-radius:6px}
+.ck-hero h1{font-size:clamp(30px,5vw,48px);line-height:1.25;letter-spacing:-1.2px;font-weight:900;margin:16px 0 14px;color:var(--ink)}
+.ck-hero h1 em{font-style:normal;color:#B5532A}
+.ck-hero p{color:var(--sub);font-size:16.5px}
+.ck-demo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;background:#fff8e6;border:1px solid #f3dfa6;border-radius:12px;padding:14px 18px;color:#9A3412;font-weight:700;font-size:14.5px}
+.ck-demo button{background:#fff;border:1.5px solid #d9b45a;color:#9A3412;border-radius:8px;padding:8px 14px;font-weight:700}
+.ck-demo.off{display:none}
+.ck-grid{display:grid;grid-template-columns:400px 1fr;gap:20px;margin-top:20px;align-items:start}
+@media(max-width:980px){.ck-grid{grid-template-columns:1fr}}
+.ck-form{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 20px 8px}
+.ck-q{margin-bottom:16px}
+.ck-q b{display:block;font-size:15px;color:var(--ink);margin-bottom:8px}
+.ck-q b small{font-weight:500;color:var(--sub);font-size:12.5px;margin-left:6px}
+.ck-ch{display:flex;flex-wrap:wrap;gap:6px}
+.ck-ch button{background:#fff;border:1px solid #d3d8df;color:#3b414c;border-radius:20px;padding:7px 13px;font-size:13.5px;font-weight:600}
+.ck-ch button:hover{border-color:#B5532A}
+.ck-ch button.on{background:#B5532A;border-color:#B5532A;color:#fff}
+.ck-total{border:2px solid #B5532A;border-radius:14px;padding:24px 26px;background:#fff}
+.ck-total small{color:var(--sub);font-size:15px;font-weight:600}
+.ck-total b{display:block;font-size:clamp(44px,7vw,70px);font-weight:900;letter-spacing:-1.5px;color:var(--ink);line-height:1.15;margin:6px 0}
+.ck-total span{font-weight:700;color:var(--ink)}
+.ck-total span em{font-style:normal;color:#1e9e5a}
+.ck-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.ck-cols.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.ck-cols,.ck-cols.two{grid-template-columns:1fr}}
+.ck-col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.ck-col h4{font-size:15px;color:var(--sub);font-weight:700}
+.ck-col .amt{font-size:30px;font-weight:900;color:var(--ink);letter-spacing:-.5px;margin:2px 0}
+.ck-col .sub{font-size:12.5px;color:var(--sub);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px}
+.ck-it{display:flex;gap:9px;padding:7px 0;font-size:13.5px;line-height:1.5}
+.ck-it i{flex:0 0 20px;height:20px;border-radius:50%;font-style:normal;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ck-it i.y{background:#1e9e5a;color:#fff}.ck-it i.q{border:1.5px solid #9aa3ae;color:#7b8490}.ck-it i.n{background:#eef0f3;color:#9aa3ae}
+.ck-it b{color:var(--ink);display:block}
+.ck-it b em{font-style:normal;color:#1e9e5a;margin-left:4px}
+.ck-it span{color:var(--sub);display:block}
+.ck-it span.go{color:#9A3412;font-weight:700}
+.ck-it.dim b{color:#9aa3ae}
+.ck-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.ck-disc{font-size:12.5px;color:var(--sub);margin-top:14px;line-height:1.7}
+.ck-back{display:inline-block;margin-bottom:14px;font-size:14px;color:var(--sub);font-weight:600}
+.ck{padding:28px 0 60px}
+.ft{background:#0B2A6B;color:#C9D8F2;font-size:13px;padding:22px 0}.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 18px}.ft b{color:#fff}.ft a{color:#FFE16B;font-weight:700}
+</style>
+</head>
+<body>
+<div class="lang"><div class="wrap"><b style="color:#3E6DB0">한국어</b><span>｜</span><a href="https://jp.seyeon-tax.com/">日本語</a><span>｜</span><a href="https://en.seyeon-tax.com/">English</a></div></div>
+<div class="hd"><div class="wrap"><a class="logo" href="/"><img src="/img/logo.png" alt="" style="width:44px;height:41px">세연회계법인</a><div class="tel"><small>휴대폰·직통(추천) 담당 회계사에게 바로 연결됩니다</small><a href="tel:+821039456101">010-3945-6101</a></div></div></div>
+<div class="nav"><div class="wrap"><a href="/">HOME</a><a href="/#test">공제·지원금 1분 테스트</a><a href="/tools/money.html" class="on">5년 돈 찾기</a><a href="/tools/rnd.html" class="">R&amp;D·투자 공제</a><a href="/#refund">경정청구</a><a href="/#contact">연락처</a></div></div>
+<div >
+<div class="ck">
+<div class="wrap">
+  <a href="/#calc" class="ck-back">← 계산기 목록으로</a>
+  <div class="ck-hero">
+    <span class="ck-badge">사장님·대표님 무료 점검표</span>
+    <h1>앞으로 5년, <em>받을 수 있는 돈</em>과<br>안 내도 되는 세금</h1>
+    <p>보조금·세액감면·세액공제를 한 장으로 확인합니다. 아래에서 우리 가게·회사에 맞는 답을 고르면 숫자가 바로 바뀝니다.</p>
+  </div>
+  <div class="ck-demo" id="ck-demo"><span>예시 가게(30년 된 견과류 볶음집, 하루 매출 100~200만 원, 직원 3~4명) 숫자입니다. 아래 설문을 고르면 우리 가게 숫자로 바뀝니다.</span><button id="ck-clear">빈 설문지로</button></div>
+  <div class="ck-grid">
+    <div class="ck-form" id="ck-form"></div>
+    <div class="ck-out">
+      <div class="ck-total"><small>5년간 받거나 아낄 수 있는 돈(최대 예상)</small><b id="ck-sum">0만 원</b><span>한 달로 나누면 <em id="ck-mon">0만 원</em>이 매달 남습니다.</span></div>
+      <div class="ck-cols" id="ck-cols"></div>
+      <div class="ck-cta"><a href="#" data-form class="btn or">이 결과로 무료 상담 받기 →</a><a href="https://open.kakao.com/o/sF4UcUPi" target="_blank" rel="noopener" class="btn ln">카카오톡으로 물어보기</a></div>
+      <p class="ck-disc">※ 2026년 10월 현행 규정 기준의 개략 추정입니다. 세액공제·감면은 낸 세금(최저한세 적용) 안에서만 받을 수 있고, 남는 공제는 10년간 이월됩니다. 업종·상시근로자 수 계산·중복 적용 제한·사후관리 요건과 보조금 예산·공고에 따라 실제 금액은 달라집니다. 입력한 내용은 저장되지 않습니다.</p>
+    </div>
+  </div>
+</div>
+</div>
+<div class="ft"><div class="wrap"><b>세연회계법인</b><span>(06024) 서울 강남구 언주로159길 27 3층</span><span>휴대폰 010-3945-6101</span><span>gblee@seyeon-tax.com</span><a href="https://open.kakao.com/o/sF4UcUPi">카카오톡 상담</a></div></div>
+<script>
+var FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSddmsmvNsusmnc-T1l_dGm1wPc1bENdqRVkz6xcAZfKvaftSg/viewform';
+document.addEventListener('click',function(e){var a=e.target.closest('[data-form]');if(a){e.preventDefault();window.open(FORM_URL,'_blank','noopener');if(window.gtag)gtag('event','form_open',{tool:'check'});}});
+/* ===== 5년 돈 찾기 ===== */
+var CKQ=[
+ {k:'type',t:'사업 형태',o:[['개인사업자','p'],['법인','c']]},
+ {k:'ind',t:'업종',o:[['음식점','food'],['도소매','retail'],['제조','mfg'],['서비스·기타','svc']]},
+ {k:'area',t:'사업장 위치',o:[['서울·인천·경기 일부(과밀억제권역)','metro'],['그 외 지역','local']]},
+ {k:'tax',t:'작년에 낸 소득세(법인세)',s:'지방소득세 제외, 대략',o:[['100만 원 미만',60],['100~500만',300],['500~1,500만',1000],['1,500~3,000만',2200],['3,000만 이상',4000]]},
+ {k:'emp',t:'지금 직원 수',s:'아르바이트 포함',o:[['없음',0],['1~4명',3],['5~9명',7],['10명 이상',12]]},
+ {k:'inc',t:'작년보다 늘어난 직원',o:[['0명',0],['1명',1],['2명',2],['3명 이상',3]]},
+ {k:'youth',t:'그중 청년(15~34세)',o:[['0명',0],['1명',1],['2명 이상',2]]},
+ {k:'newins',t:'4대보험 새로 가입시킬 직원',s:'월급 270만 원 미만',o:[['0명',0],['1명',1],['2명',2],['3명 이상',3]]},
+ {k:'open',t:'개업 시기',o:[['1년 이내','1'],['2~3년','3'],['4~5년','5'],['5년 넘음','old']]},
+ {k:'young',t:'개업할 때 대표 나이',o:[['만 34세 이하','y'],['35세 이상','n']]},
+ {k:'book',t:'장부는 어떻게 신고하나요',s:'개인사업자만',o:[['추계(장부 없음)','none'],['간편장부','simple'],['복식부기','double'],['모름','unk']]},
+ {k:'small',t:'연 매출 규모',o:[['8천만 원 이하','s'],['8천만~3억','m'],['3억 이상','l']]},
+ {k:'yellow',t:'노란우산공제',s:'개인사업자만',o:[['가입함','y'],['안 함','n']]},
+ {k:'inv',t:'최근 3년 설비·인테리어 투자',o:[['없음',0],['1천만 원 안팎',1000],['3천만 원 안팎',3000],['1억 원 이상',10000]]}
+];
+var CK_DEMO={type:'p',ind:'retail',area:'metro',tax:1000,emp:3,inc:1,youth:0,newins:1,open:'old',young:'n',book:'simple',small:'l',yellow:'n',inv:0};
+var CK={},ckDemo=true;
+function m(n){return Math.round(n).toLocaleString('ko-KR')+'만 원';}
+function ckDraw(){var f=document.getElementById('ck-form');
+ f.innerHTML=CKQ.map(function(q){return'<div class="ck-q"><b>'+q.t+(q.s?'<small>'+q.s+'</small>':'')+'</b><div class="ck-ch">'+q.o.map(function(o){return'<button data-k="'+q.k+'" data-v="'+o[1]+'" class="'+(String(CK[q.k])===String(o[1])?'on':'')+'">'+o[0]+'</button>';}).join('')+'</div></div>';}).join('');
+ f.querySelectorAll('button').forEach(function(b){b.onclick=function(){var q=CKQ.filter(function(x){return x.k===b.dataset.k;})[0];var v=q.o.filter(function(o){return String(o[1])===b.dataset.v;})[0][1];if(ckDemo){CK={};ckDemo=false;document.getElementById('ck-demo').classList.add('off');}CK[b.dataset.k]=v;ckDraw();};});
+ ckCalc();}
+function ckCalc(){var a=CK,has=function(k){return a[k]!==undefined;};
+ var P=a.type!=='c',metro=a.area==='metro',tax=has('tax')?a.tax:0;
+ var G=[],R=[],C=[];
+ /* 보조금 */
+ var ni=a.newins||0;
+ if(has('emp')&&a.emp>=10)G.push(['n','두루누리 4대보험 지원',0,'이럴 때: 직원 10명 미만·월급 270만 원 미만 → 국민연금·고용보험 80%, 최대 3년','지금 직원 수로는 대상이 아닐 수 있습니다']);
+ else if(ni>0)G.push(['y','두루누리 4대보험 지원',ni*396,'직원 10명 미만·월급 270만 원 미만 신규 가입 → 국민연금·고용보험 80%, 최대 3년','1명당 3년 약 396만 원']);
+ else G.push(['q','두루누리 4대보험 지원',0,'직원 10명 미만·월급 270만 원 미만 신규 가입 → 국민연금·고용보험 80%, 최대 3년','직원을 새로 4대보험에 가입시키면 1명당 3년 약 396만 원']);
+ var yo=a.youth||0;
+ if(has('emp')&&a.emp>=5&&yo>0)G.push(['y','청년일자리도약장려금',yo*1200,'직원 5명 이상·청년 정규직 채용 후 6개월 유지 → 1명당 2년 최대 1,200만 원(해마다 공고 확인)','']);
+ else G.push(['q','청년일자리도약장려금',0,'직원 5명 이상·청년 정규직 채용 후 6개월 유지 → 1명당 2년 최대 1,200만 원(해마다 공고 확인)','청년 1명 채용 시 최대 1,200만 원']);
+ /* 세액감면: §6 vs §7 (중복 불가, 큰 쪽) */
+ var yrsLeft={'1':4,'3':3,'5':1,'old':0}[a.open]||0;
+ var startOK=yrsLeft>0&&(a.young==='y'||a.small==='s');
+ var r6=startOK?(metro?0.5:1):0;
+ var a6=tax*r6*yrsLeft;
+ var r7=0,note7='';
+ if(a.ind==='retail')r7=0.10;else if(a.ind==='mfg'||a.ind==='svc')r7=metro?0.20:0.30;
+ if(a.ind==='food')note7='음식점업은 대상 업종이 아닐 수 있어 확인이 필요합니다';
+ var a7=Math.min(tax*r7,10000)*5;
+ if(a6>0&&a6>=a7){R.push(['y','창업중소기업 감면(조특§6)',a6,'개업 5년 이내·청년 창업 또는 연 매출 8천만 원 이하 → 소득세(법인세) '+(r6*100)+'% 감면, 남은 '+yrsLeft+'년','']);R.push(['n','중소기업 특별세액감면(조특§7)',0,'창업감면과 같은 해에는 함께 받을 수 없습니다','창업감면이 끝나면 이어서 적용 검토']);}
+ else{ if(r7>0)R.push(['y','중소기업 특별세액감면(조특§7)',a7,'소기업 '+(a.ind==='retail'?'도소매':'제조·서비스')+' → 소득세(법인세) '+(r7*100)+'% 매년 감면','']);
+   else R.push(['q','중소기업 특별세액감면(조특§7)',0,'업종·지역·규모에 따라 소득세(법인세) 5~30% 매년 감면',note7||'업종을 고르면 계산합니다']);
+   R.push([startOK?'q':'n','창업중소기업 감면(조특§6)',0,'개업 5년 이내, 개업 때 만 34세 이하 또는 연 매출 8천만 원 이하 → 서울 과밀권역 50%, 그 외 최대 100%',startOK?'':'개업 5년이 지나 대상이 아닙니다']);}
+ /* 세액공제·소득공제 */
+ var inc=a.inc||0,yc=Math.min(yo,inc),oc=inc-yc;
+ var g29=(yc*(metro?1450:1550)+oc*(metro?850:950))*3;
+ C.push([inc>0?'y':'q','통합고용세액공제(조특§29의8)',g29,'작년보다 직원 수 증가 → 1명당 연 '+(metro?'850':'950')+'만 원, 청년 '+(metro?'1,450':'1,550')+'만 원, 3년',inc>0?'':'직원이 늘면 1명당 3년 최대 '+(metro?'4,350':'4,650')+'만 원']);
+ if(P){var bk=(a.book==='none'||a.book==='simple'||a.book==='unk')&&a.small!=='l';
+  var g56=bk?Math.min(tax*0.2,100)*5:0;
+  C.push([bk?'y':(a.book==='double'?'n':'q'),'기장세액공제(소법§56의2)',g56,'간편장부 대상자가 복식부기로 신고 → 소득세 20%, 연 100만 원 한도',bk?'장부 바꾸면 연 최대 100만 원':(a.book==='double'?'이미 복식부기로 신고 중입니다':'')]);
+  var mr=tax<100?0.066:tax<500?0.165:tax<1500?0.264:tax<3000?0.385:0.418;
+  var ded=tax<500?600:tax<2200?400:200;
+  var gy=a.yellow==='n'?ded*mr*5:0;
+  C.push([a.yellow==='n'?'y':(a.yellow==='y'?'n':'q'),'노란우산공제 소득공제(조특§86의3)',gy,'사업소득에 따라 연 200~600만 원 소득공제 + 폐업·노령 대비 목돈',a.yellow==='y'?'이미 가입하셨습니다':'가입만 해도 매년 절세']);}
+ var g24=(a.inv||0)*0.10;
+ C.push([g24>0?'y':'q','통합투자세액공제(조특§24)',g24,'기계·설비·인테리어 투자액의 10%(중소기업 기본)','']);
+ /* 세액공제·감면은 낸 세금 한도 (5년) */
+ var sumR=R.reduce(function(s,x){return s+x[2];},0),sumC=C.reduce(function(s,x){return s+x[2];},0),cap=tax*5;
+ var capped=false;if(has('tax')&&sumR+sumC>cap){var room=Math.max(0,cap-sumR);if(sumC>room){C.forEach(function(x){x[2]=sumC?x[2]*room/sumC:0;});capped=true;}sumC=Math.min(sumC,room);}
+ var sumG=G.reduce(function(s,x){return s+x[2];},0),total=sumG+sumR+sumC;
+ document.getElementById('ck-sum').textContent=m(total);
+ document.getElementById('ck-mon').textContent=m(total/60);
+ var col=function(title,amt,sub,list){return'<div class="ck-col"><h4>'+title+'</h4><div class="amt">'+m(amt)+'</div><div class="sub">'+sub+'</div>'+list.map(function(x){return'<div class="ck-it'+(x[0]==='n'?' dim':'')+'"><i class="'+x[0]+'">'+(x[0]==='y'?'✓':x[0]==='q'?'?':'–')+'</i><div><b>'+x[1]+(x[2]>0?'<em>'+m(x[2])+'</em>':'')+'</b><span>'+x[3]+'</span>'+(x[4]?'<span class="go">→ '+x[4]+'</span>':'')+'</div></div>';}).join('')+'</div>';};
+ document.getElementById('ck-cols').innerHTML=col('보조금',sumG,'5년 합계 · 갚지 않는 돈',G)+col('세액감면',sumR,'5년 합계 · 소득세(법인세)에서 깎는 돈',R)+col('세액공제·소득공제',sumC,'5년 합계 · 놓쳤다면 지난 5년 치도 경정청구'+(capped?' · 낸 세금 한도로 조정':''),C);}
+function qzStart(){if(ckDemo){CK=JSON.parse(JSON.stringify(CK_DEMO));}ckDraw();}
+document.getElementById('ck-clear').onclick=function(){CK={};ckDemo=false;document.getElementById('ck-demo').classList.add('off');ckDraw();};
+
+qzStart();
+</script>
+</body>
+</html>
