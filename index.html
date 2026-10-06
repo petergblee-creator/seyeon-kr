@@ -148,12 +148,12 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <sc-for list="{{kr.cells}}" as="c" hint-placeholder-count="35"><div style="{{c.style}}" title="{{c.tip}}"><span>{{c.d}}</span><sc-if value="{{c.ev}}" hint-placeholder-val="{{false}}"><span style="{{c.dot}}">{{c.lbl}}</span></sc-if></div></sc-for>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed #D8E2EE; padding-top: 10px">
-<b style="font-size: 14px">오늘 전후 1주일</b>
+<b style="font-size: 14px">지난 2주간의 기한 <span style="font-weight: 400; color: #9A3412; font-size: 12px">(놓친 것은 없나요?)</span></b>
 <sc-for list="{{kr.near}}" as="n" hint-placeholder-count="2"><div style="{{n.style}}; font-size: 14px; display: flex; gap: 10px"><span style="flex: 0 0 auto; min-width: 72px">{{n.d}}</span><span>{{n.t}}</span></div></sc-for>
 </div>
 </div>
 <div style="flex: 1 1 320px; padding: 18px; background: #F6F9FD; border-left: 1px solid #D8E2EE; display: flex; flex-direction: column; gap: 14px">
-<div style="background: #FFFFFF; border: 1px solid #D8E2EE; border-radius: 8px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: #6B7684">서울 현재 시각</span><b style="font-size: 16px; color: #1F3F6E">{{clk.date}}</b></div><span style="font-size: 30px; font-weight: 700; color: #5B2A86; font-variant-numeric: tabular-nums; letter-spacing: 0.02em">{{clk.time}}</span></div>
+<div style="background: #FFFFFF; border: 1px solid #D8E2EE; border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B7684">현재 시각</span><div style="display: flex; align-items: baseline; gap: 10px"><span style="flex: 0 0 auto; min-width: 44px; font-size: 13px; color: #6B7684">서울</span><b style="font-size: 17px; color: #1F3F6E">{{clk.date}}</b><b style="margin-left: auto; font-size: 17px; color: #5B2A86; font-variant-numeric: tabular-nums">{{clk.time}}</b></div></div>
 <sc-for list="{{kr.months}}" as="mo" hint-placeholder-count="3">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <b style="font-size: 15px; color: #2F5590">{{mo.t}}</b>
@@ -1027,15 +1027,15 @@ function calKR(today) {
   var evs = genEvents(KR_RULES, KR_HOL, y, m);
   var g = buildGrid(y, m, today, evs, KR_HOL, '#C2416B');
   var near = [];
-  [-1, 0, 1].forEach(function (o) { var b = new Date(y, m + o, 1); genEvents(KR_RULES, KR_HOL, b.getFullYear(), b.getMonth()).forEach(function (e) { var diff = (e.date - new Date(y, m, today.getDate())) / 86400000; if (diff >= -7 && diff <= 7) near.push({ d: fmt(e.date), t: e.t, style: diff < 0 ? 'color: #8A94A3' : (diff === 0 ? 'color: #5B2A86; font-weight: 700' : 'color: #222222') }); }); });
+  [-1, 0].forEach(function (o) { var b = new Date(y, m + o, 1); genEvents(KR_RULES, KR_HOL, b.getFullYear(), b.getMonth()).forEach(function (e) { var diff = (e.date - new Date(y, m, today.getDate())) / 86400000; if (diff >= -14 && diff < 0) near.push({ d: fmt(e.date), t: e.t, style: 'color: #555555' }); }); });
   var months = [0, 1, 2].map(function (o) {
     var b = new Date(y, m + o, 1);
     var t0 = new Date(y, m, today.getDate());
-    var items = genEvents(KR_RULES, KR_HOL, b.getFullYear(), b.getMonth()).filter(function (e) { return e.major; }).map(function (e) { var df = Math.round((e.date - t0) / 86400000); var dd = df < 0 ? (LANG_JA ? '済' : '완료') : (df === 0 ? 'D-Day' : 'D-' + df); var hot = df >= 0 && df <= 7; return { d: fmt(e.date), t: e.t, dd: dd, ddStyle: 'flex: 0 0 auto; min-width: 52px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 4px; padding: 1px 4px; ' + (df < 0 ? 'background: #EEF1F5; color: #9AA6B5;' : (hot ? 'background: #E67E22; color: #FFFFFF;' : 'background: #E3ECF8; color: #2F5590;')) }; });
-    if (!items.length) items = [{ d: '', t: LANG_JA ? '主要な申告期限なし（毎月10日の源泉税のみ）' : '주요 신고기한 없음(매월 10일 원천세만)' }];
+    var items = genEvents(KR_RULES, KR_HOL, b.getFullYear(), b.getMonth()).filter(function (e) { return e.major && Math.round((e.date - t0) / 86400000) >= 0; }).map(function (e) { var df = Math.round((e.date - t0) / 86400000); var dd = df < 0 ? (LANG_JA ? '済' : '완료') : (df === 0 ? 'D-Day' : 'D-' + df); var hot = df >= 0 && df <= 7; return { d: fmt(e.date), t: e.t, dd: dd, ddStyle: 'flex: 0 0 auto; min-width: 52px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 4px; padding: 1px 4px; ' + (df < 0 ? 'background: #EEF1F5; color: #9AA6B5;' : (hot ? 'background: #E67E22; color: #FFFFFF;' : 'background: #E3ECF8; color: #2F5590;')) }; });
+    if (!items.length) items = [{ d: '', t: LANG_JA ? '今後の主要な期限なし（毎月10日の源泉税のみ）' : '앞으로 주요 기한 없음(매월 10일 원천세만)' }];
     return { t: LANG_JA ? (b.getFullYear() + '年' + (b.getMonth() + 1) + '月' + (o === 0 ? '（今月）' : (o === 1 ? '（来月）' : '（再来月）'))) : (b.getFullYear() + '년 ' + (b.getMonth() + 1) + '월' + (o === 0 ? '(이번 달)' : (o === 1 ? '(다음 달)' : '(다다음 달)'))), items: items };
   });
-  return { mon: LANG_JA ? ((m + 1) + '月') : ((m + 1) + '월'), title: LANG_JA ? (y + '年' + (m + 1) + '月') : (y + '년 ' + (m + 1) + '월'), today: (LANG_JA ? '今日 ' : '오늘 ') + fmt(today), head: g.head, cells: g.cells, near: near.length ? near : [{ d: '', t: LANG_JA ? '前後1週間に期限はありません' : '전후 1주일 내 기한 없음', style: 'color: #8A94A3' }], months: months };
+  return { mon: LANG_JA ? ((m + 1) + '月') : ((m + 1) + '월'), title: LANG_JA ? (y + '年' + (m + 1) + '月') : (y + '년 ' + (m + 1) + '월'), today: (LANG_JA ? '今日 ' : '오늘 ') + fmt(today), head: g.head, cells: g.cells, near: near.length ? near : [{ d: '', t: LANG_JA ? '過去2週間に期限はありませんでした' : '지난 2주간 기한 없음', style: 'color: #8A94A3' }], months: months };
 }
 function calJP(today, off) {
   var b = new Date(today.getFullYear(), today.getMonth() + off, 1), y = b.getFullYear(), m = b.getMonth();
