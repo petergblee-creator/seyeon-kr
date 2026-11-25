@@ -86,6 +86,17 @@ details .in li{margin-left:18px}
 .ft{background:#0B2A6B;color:#C9D8F2;font-size:13px;padding:22px 0}.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 18px}.ft b{color:#fff}.ft a{color:#FFE16B;font-weight:700}
 .fs{position:fixed;right:12px;bottom:12px;z-index:50;width:38px;height:38px;border-radius:50%;border:1px solid #C3D6EE;background:#fff;color:var(--navy);font-size:17px;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer}
 @media(max-width:600px){.hero{padding:22px 18px}.sec{padding:18px 14px}.row .v{font-size:15px}}
+/* 2026-11-25 적용: 각진 상자·검정 테두리(순한 맛) */
+:root{--paper:#F7F5F0;--ink:#16191f;--hl:#F6D77A}
+body,.pg{background:var(--paper)}
+*{border-radius:2px!important}
+.hero,.sec{border:1.5px solid #2a2e35!important;box-shadow:none}
+.hero h1 em{color:var(--ink);background:linear-gradient(transparent 62%,var(--hl) 62%,var(--hl) 90%,transparent 90%)}
+.badge{background:#fff!important;color:var(--ink)!important;border:1.5px solid var(--ink)}
+.pts span{background:transparent!important;border:1px solid #2a2e35!important;color:var(--ink)!important}
+.toc a{border:1.5px solid #2a2e35!important;color:var(--ink)!important}
+.sec h2{padding-bottom:6px;border-bottom:1.5px solid var(--ink)}
+input,select{border:1.5px solid #2a2e35!important}
 </style>
 </head>
 <body>
@@ -99,7 +110,7 @@ details .in li{margin-left:18px}
 <div class="hero">
   <span class="badge">보수 미리 공개</span>
   <h1>얼마인지 <em>먼저 보고</em><br>맡기세요</h1>
-  <p>매출 규모별로 보수를 미리 정해 두었습니다. 아래 계산기에 매출만 넣으면 월 기장료와 1년 예상 보수가 바로 나옵니다. 상담 후 금액이 표보다 올라가는 일은 미리 말씀드립니다.</p>
+  <p>매출 규모별 보수 기준을 미리 공개합니다. 계산기에 매출을 넣으면 월 기장료와 1년 예상 보수를 바로 확인하실 수 있습니다. 표시 금액은 참고용 추정치이며, 최종 보수는 자료 검토 후 계약서로 확정합니다.</p>
   <div class="pts"><span>담당 회계사 직접</span><span>보수표 공개</span><span>첫 점검 무료</span><span>기장 고객 세무조정 10% 할인</span></div>
   <div class="toc">
     <a href="#calc">예상 보수 계산기</a><a href="#book">① 월 기장료</a><a href="#adv">② 세무 자문</a><a href="#pay">③ 급여·실무 대행</a><a href="#adj">④ 결산·세무조정</a><a href="#file">⑤ 신고 대행</a><a href="#gift">⑥ 양도·증여·상속</a><a href="#appeal">⑦ 세무조사·불복</a><a href="#dx">놓친 공제 진단</a>
@@ -117,7 +128,7 @@ details .in li{margin-left:18px}
       <div class="tot" style="margin-top:6px">한 달 기장료<b id="o-mon" style="font-size:22px">0원</b></div>
       <div class="ls" id="o-ls"></div>
       <div class="cta"><a href="#" data-form class="btn or">이 금액으로 상담 받기 →</a><a href="https://open.kakao.com/o/sF4UcUPi" target="_blank" rel="noopener" class="btn ln">카톡으로 물어보기</a></div>
-      <p class="disc">※ 금액은 5만 원 단위로 반올림한 개략 추정입니다(월 보수는 5천 원 단위). 거래 건수·업무 난이도·자료 상태에 따라 상담 후 확정하며, 확정 금액은 계약 전에 서면으로 알려 드립니다.</p>
+      <p class="disc">※ 참고용 추정치입니다(5만 원 단위 반올림, 월 보수는 5천 원 단위). 거래 건수·업무 범위·자료 상태에 따라 달라질 수 있으며, 확정 금액은 계약 전 서면으로 안내합니다.</p>
     </div>
   </div>
 </div>
