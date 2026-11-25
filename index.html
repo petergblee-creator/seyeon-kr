@@ -154,7 +154,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; font-size: 18px; padding-bottom: 8px; border-bottom: 2px solid #3E6DB0; display: flex; justify-content: space-between; align-items: baseline">■ 공지사항<button type="button" onClick="{{go.news}}" style="background: none; border: 0; font: inherit; font-size: 13px; color: #3E6DB0; cursor: pointer">전체 ▶</button></h2>
 <div style="display: flex; flex-direction: column; font-size: 14px">
-<sc-for list="{{newsTop}}" as="n" hint-placeholder-count="4"><button type="button" onClick="{{go.news}}" style="background: none; border: 0; border-bottom: 1px dotted #AAB6C5; padding: 10px 0; text-align: left; font: inherit; cursor: pointer; display: flex; justify-content: space-between; gap: 8px"><span>{{n.title}}</span><span style="color: #777777; flex: 0 0 auto">{{n.date}}</span></button></sc-for>
+<sc-for list="{{newsTop}}" as="n" hint-placeholder-count="4"><button type="button" onClick="{{n.open}}" style="background: none; border: 0; border-bottom: 1px dotted #AAB6C5; padding: 10px 0; text-align: left; font: inherit; cursor: pointer; display: flex; justify-content: space-between; gap: 8px"><span>{{n.title}}</span><span style="color: #777777; flex: 0 0 auto">{{n.date}}</span></button></sc-for>
 </div>
 
 </div>
@@ -832,6 +832,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 </sc-if>
 
 <sc-if value="{{on.news}}" hint-placeholder-val="{{false}}">
+<sc-if value="{{newsOne}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{go.news}}" style="align-self: flex-start; margin-bottom: 10px; min-height: 40px; padding: 0 14px; background: #FFFFFF; border: 1px solid #3E6DB0; color: #3E6DB0; border-radius: 3px; font: inherit; font-size: 14px; cursor: pointer">← 공지 전체 보기</button></sc-if>
 <div style="display: flex; flex-direction: column; border-top: 2px solid #3E6DB0">
 <sc-for list="{{news}}" as="n" hint-placeholder-count="4">
 <div style="padding: 14px 8px; border-bottom: 1px solid #E1E8F0; display: flex; flex-direction: column; gap: 4px">
@@ -1196,7 +1197,10 @@ class Component extends DCLogic {
     var qaItems = QA.map(function (q, i) { var o = !!qaOpen[i]; return { no: i + 1, q: q[0], a: q[1], open: o, sign: o ? '−' : '＋', rowStyle: 'border-bottom: 1px solid #E1E8F0; background: ' + (i % 2 ? '#F6F9FD' : '#FFFFFF') + ';', toggle: function () { var x = Object.assign({}, (self.state || {}).qa || {}); x[i] = !x[i]; self.setState({ qa: x }); } }; });
     var kqOpen = s.kq || {};
     var kqItems = KRQA.map(function (q, i) { var o = !!kqOpen[i]; return { no: i + 1, q: q[0], a: q[1], open: o, sign: o ? '−' : '＋', rowStyle: 'border-bottom: 1px solid #E1E8F0; background: ' + (i % 2 ? '#F6F9FD' : '#FFFFFF') + ';', toggle: function () { var x = Object.assign({}, (self.state || {}).kq || {}); x[i] = !x[i]; self.setState({ kq: x }); } }; });
-    var newsList = (s.newsData || NEWS_DEFAULT).slice().sort(function (a, b) { if (!!a.pin !== !!b.pin) return a.pin ? -1 : 1; return a.date < b.date ? 1 : -1; }).map(function (n) { return Object.assign({}, n, { title: (n.pin ? '📌 ' : '') + n.title }); });
+    var newsList = (s.newsData || NEWS_DEFAULT).slice().sort(function (a, b) { if (!!a.pin !== !!b.pin) return a.pin ? -1 : 1; return a.date < b.date ? 1 : -1; }).map(function (n, ni) { return Object.assign({}, n, { title: (n.pin ? '📌 ' : '') + n.title, open: function () { self.setState({ page: 'news', newsSel: ni + 1, hover: null }); try { history.replaceState(null, '', '#news'); } catch (e) {} try { window.scrollTo(0, 0); } catch (e) {} } }); });
+    var newsSel = s.newsSel && newsList[s.newsSel - 1] ? s.newsSel : 0;
+    var newsShown = newsSel ? [newsList[newsSel - 1]] : newsList;
+    var _goNews = go.news; go.news = function () { self.setState({ newsSel: 0 }); if (_goNews) _goNews(); };
     var ans = s.ans || {};
     var noCount = 0, answered = 0;
     var BTN = 'min-height: 40px; min-width: 72px; border-radius: 20px; font: inherit; font-weight: 700; cursor: pointer; ';
@@ -1234,7 +1238,7 @@ class Component extends DCLogic {
       ansYes: function () { answer(true); }, ansNo: function () { answer(false); },
       back: function () { var p = ((self.state || {}).path || []).slice(); p.pop(); self.setState({ path: p }); },
       reset: function () { self.setState({ path: [] }); },
-      upd: (function () { var d = new Date(Date.now() - 2 * 864e5); return '최종 수정 ' + d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate(); })(), kr: kr, clk: clk, jp: jp, qa: qaItems, kq: kqItems, news: newsList, newsTop: newsList.slice(0, 4),
+      upd: (function () { var d = new Date(Date.now() - 2 * 864e5); return '최종 수정 ' + d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate(); })(), kr: kr, clk: clk, jp: jp, qa: qaItems, kq: kqItems, news: newsShown, newsOne: !!newsSel, newsTop: newsList.slice(0, 4),
       showPopup: false,
       popToday: function () { popHide(1); self.setState({ popup: false }); },
       pop14: function () { popHide(14); self.setState({ popup: false }); },
