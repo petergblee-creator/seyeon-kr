@@ -836,6 +836,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 <sc-for list="{{newsPageItems}}" as="n" hint-placeholder-count="4"><button type="button" onClick="{{n.pick}}" style="{{n.rowStyle}}"><span style="flex: 0 0 auto; font-size: 13px; color: #777777; min-width: 80px; font-weight: 400">{{n.date}}</span><span>{{n.title}}</span></button></sc-for>
 </div>
 <sc-if value="{{newsMulti}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 12px 0"><sc-for list="{{newsPages}}" as="pg" hint-placeholder-count="2"><button type="button" onClick="{{pg.go}}" style="{{pg.style}}">{{pg.t}}</button></sc-for></div></sc-if>
+<sc-if value="{{newsHas}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; border-top: 2px solid #3E6DB0; margin-top: 18px; background: #FBFCFE">
 <sc-for list="{{news}}" as="n" hint-placeholder-count="1">
 <div style="padding: 14px 8px; border-bottom: 1px solid #E1E8F0; display: flex; flex-direction: column; gap: 4px">
@@ -845,6 +846,7 @@ a{color:#3E6DB0}a:hover{color:#163A75}
 </div>
 </sc-for>
 </div>
+</sc-if>
 </sc-if>
 
 </main>
@@ -1146,7 +1148,7 @@ class Component extends DCLogic {
     var go = {}, on = {}, titles = {};
     var cat = null;
     var EXT = { fee: '/tools/fee.html', biz: '/tools/biz.html' };
-    var nav = function (k) { return function () { if (EXT[k]) { location.href = EXT[k]; return; } self.setState({ page: k, hover: null }); try { history.replaceState(null, '', k === 'home' ? location.pathname : '#' + k); } catch (e) {} pv(k); try { window.scrollTo(0, 0); } catch (e) {} }; };
+    var nav = function (k) { return function () { if (EXT[k]) { location.href = EXT[k]; return; } self.setState(k === 'news' ? { page: k, hover: null, newsSel: 0, newsPage: 0 } : { page: k, hover: null }); try { history.replaceState(null, '', k === 'home' ? location.pathname : '#' + k); } catch (e) {} pv(k); try { window.scrollTo(0, 0); } catch (e) {} }; };
     go.home = nav('home');
     on.home = page === 'home';
     MENU.forEach(function (m) {
@@ -1200,15 +1202,15 @@ class Component extends DCLogic {
     var qaItems = QA.map(function (q, i) { var o = !!qaOpen[i]; return { no: i + 1, q: q[0], a: q[1], open: o, sign: o ? '−' : '＋', rowStyle: 'border-bottom: 1px solid #E1E8F0; background: ' + (i % 2 ? '#F6F9FD' : '#FFFFFF') + ';', toggle: function () { var x = Object.assign({}, (self.state || {}).qa || {}); x[i] = !x[i]; self.setState({ qa: x }); } }; });
     var kqOpen = s.kq || {};
     var kqItems = KRQA.map(function (q, i) { var o = !!kqOpen[i]; return { no: i + 1, q: q[0], a: q[1], open: o, sign: o ? '−' : '＋', rowStyle: 'border-bottom: 1px solid #E1E8F0; background: ' + (i % 2 ? '#F6F9FD' : '#FFFFFF') + ';', toggle: function () { var x = Object.assign({}, (self.state || {}).kq || {}); x[i] = !x[i]; self.setState({ kq: x }); } }; });
-    var newsList = (s.newsData || NEWS_DEFAULT).slice().sort(function (a, b) { if (!!a.pin !== !!b.pin) return a.pin ? -1 : 1; return a.date < b.date ? 1 : -1; }).map(function (n, ni) { return Object.assign({}, n, { title: (n.pin ? '📌 ' : '') + n.title, open: function () { self.setState({ page: 'news', newsSel: ni + 1, newsPage: Math.floor(ni / 10), hover: null }); try { history.replaceState(null, '', '#news'); } catch (e) {} try { window.scrollTo(0, 0); } catch (e) {} } }); });
-    var NPER = 10;
+    var newsList = (s.newsData || NEWS_DEFAULT).slice().sort(function (a, b) { if (!!a.pin !== !!b.pin) return a.pin ? -1 : 1; return a.date < b.date ? 1 : -1; }).map(function (n, ni) { return Object.assign({}, n, { title: (n.pin ? '📌 ' : '') + n.title, open: function () { self.setState({ page: 'news', newsSel: ni + 1, newsPage: Math.floor(ni / 5), hover: null }); try { history.replaceState(null, '', '#news'); } catch (e) {} try { window.scrollTo(0, 0); } catch (e) {} } }); });
+    var NPER = 5;
     var newsSel = s.newsSel && newsList[s.newsSel - 1] ? s.newsSel : 0;
-    var curSel = newsSel || (newsList.length ? 1 : 0);
+    var curSel = newsSel;
     var nPages = Math.max(1, Math.ceil(newsList.length / NPER));
-    var nPage = (typeof s.newsPage === 'number' ? s.newsPage : Math.floor((curSel - 1) / NPER)); if (nPage < 0 || nPage >= nPages) nPage = 0;
+    var nPage = (typeof s.newsPage === 'number' ? s.newsPage : (curSel ? Math.floor((curSel - 1) / NPER) : 0)); if (nPage < 0 || nPage >= nPages) nPage = 0;
     var newsShown = curSel ? [newsList[curSel - 1]] : [];
     var newsPageItems = newsList.slice(nPage * NPER, nPage * NPER + NPER).map(function (n, k) { var idx = nPage * NPER + k + 1; var act = idx === curSel; return Object.assign({}, n, { pick: function () { self.setState({ newsSel: idx, newsPage: nPage }); }, rowStyle: 'background: ' + (act ? '#EEF4FC' : '#FFFFFF') + '; border: 0; border-bottom: 1px solid #E1E8F0; padding: 10px 8px; text-align: left; font: inherit; cursor: pointer; display: flex; gap: 10px; align-items: baseline; color: ' + (act ? '#1F3F6E' : '#222222') + '; font-weight: ' + (act ? '700' : '400') + ';' }); });
-    var newsPages = []; for (var pi = 0; pi < nPages; pi++) { (function (pi) { newsPages.push({ t: String(pi + 1), go: function () { self.setState({ newsPage: pi, newsSel: pi * NPER + 1 }); }, style: 'min-width: 40px; min-height: 40px; border: 1px solid ' + (pi === nPage ? '#3E6DB0' : '#D8E2EE') + '; background: ' + (pi === nPage ? '#3E6DB0' : '#FFFFFF') + '; color: ' + (pi === nPage ? '#FFFFFF' : '#333333') + '; border-radius: 3px; font: inherit; font-size: 14px; cursor: pointer;' }); })(pi); }
+    var newsPages = []; for (var pi = 0; pi < nPages; pi++) { (function (pi) { newsPages.push({ t: String(pi + 1), go: function () { self.setState({ newsPage: pi, newsSel: 0 }); }, style: 'min-width: 40px; min-height: 40px; border: 1px solid ' + (pi === nPage ? '#3E6DB0' : '#D8E2EE') + '; background: ' + (pi === nPage ? '#3E6DB0' : '#FFFFFF') + '; color: ' + (pi === nPage ? '#FFFFFF' : '#333333') + '; border-radius: 3px; font: inherit; font-size: 14px; cursor: pointer;' }); })(pi); }
     var _goNews = go.news; go.news = function () { self.setState({ newsSel: 0, newsPage: 0 }); if (_goNews) _goNews(); };
     var ans = s.ans || {};
     var noCount = 0, answered = 0;
@@ -1247,7 +1249,7 @@ class Component extends DCLogic {
       ansYes: function () { answer(true); }, ansNo: function () { answer(false); },
       back: function () { var p = ((self.state || {}).path || []).slice(); p.pop(); self.setState({ path: p }); },
       reset: function () { self.setState({ path: [] }); },
-      upd: (function () { var d = new Date(Date.now() - 2 * 864e5); return '최종 수정 ' + d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate(); })(), kr: kr, clk: clk, jp: jp, qa: qaItems, kq: kqItems, news: newsShown, newsPageItems: newsPageItems, newsPages: newsPages, newsMulti: nPages > 1, newsTop: newsList.slice(0, 4),
+      upd: (function () { var d = new Date(Date.now() - 2 * 864e5); return '최종 수정 ' + d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate(); })(), kr: kr, clk: clk, jp: jp, qa: qaItems, kq: kqItems, news: newsShown, newsPageItems: newsPageItems, newsPages: newsPages, newsMulti: nPages > 1, newsHas: !!curSel, newsTop: newsList.slice(0, 4),
       showPopup: false,
       popToday: function () { popHide(1); self.setState({ popup: false }); },
       pop14: function () { popHide(14); self.setState({ popup: false }); },
