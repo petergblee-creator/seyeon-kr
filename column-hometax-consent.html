@@ -20,6 +20,7 @@ h2{font-size:19px;color:var(--blue);border-left:4px solid var(--blue);padding-le
 .path span{background:#F6F8FB;border:1px solid var(--line);padding:4px 10px;border-radius:4px}.path i{font-style:normal;color:var(--muted)}
 ol{padding-left:22px}ol li{margin:6px 0}
 .warn{border-left:4px solid #B5532A;background:#FBF4EF;padding:10px 14px;margin:16px 0}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:12px;cursor:zoom-out}#lb.on{display:flex}#lb img{max-width:100%;max-height:100%;background:#fff}figure img{cursor:zoom-in}
 figure{margin:14px 0}figure img{width:100%;height:auto;border:1px solid var(--line)}figcaption{font-size:13px;color:var(--muted);margin-top:4px}
 .note{font-size:13px;color:var(--muted)}
 .cta{background:var(--navy);color:#fff;border-radius:10px;padding:22px 24px;margin-top:36px}.cta a{color:#F2C14E;font-weight:700}
@@ -45,6 +46,7 @@ figure{margin:14px 0}figure img{width:100%;height:auto;border:1px solid var(--li
 <li><b>세무대리 수임동의</b>를 누릅니다.</li>
 <li>신청한 세무대리인 정보를 확인하고 체크한 뒤 <b>동의하기</b>를 누르면 끝입니다.</li>
 </ol>
+<p class="note">사진을 누르면 크게 볼 수 있습니다.</p>
 <figure><img src="img/column/hometax-step-menu.jpg" alt="세무대리·납세관리 화면에서 「나의 세무대리·납세관리인」을 누릅니다." loading="lazy"><figcaption>세무대리·납세관리 화면에서 「나의 세무대리·납세관리인」을 누릅니다.</figcaption></figure>
 <figure><img src="img/column/hometax-step-consent-menu.jpg" alt="「세무대리 수임동의」를 누릅니다." loading="lazy"><figcaption>「세무대리 수임동의」를 누릅니다.</figcaption></figure>
 <figure><img src="img/column/hometax-step-consent.jpg" alt="세무대리인 정보를 확인하고 체크한 뒤 「동의하기」를 누릅니다." loading="lazy"><figcaption>세무대리인 정보를 확인하고 체크한 뒤 「동의하기」를 누릅니다.</figcaption></figure>
@@ -71,5 +73,10 @@ figure{margin:14px 0}figure img{width:100%;height:auto;border:1px solid var(--li
 
 <p class="note" style="margin-top:26px">메뉴 이름은 2026년 11월 홈택스 화면 기준이며, 홈택스 개편에 따라 바뀔 수 있습니다.</p>
 </main>
+<div id="lb"><img alt=""></div>
+<script>{const lb=document.getElementById('lb'),li=lb.querySelector('img');
+document.querySelectorAll('figure img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.classList.add('on')}));
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});}</script>
 </body>
 </html>
